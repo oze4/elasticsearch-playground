@@ -5,7 +5,7 @@ og_elasticsearch_container:
 .PHONY: elasticsearch6_container
 elasticsearch6_container:
 	docker run                                                                                           \
-	--name elasticsearch6.7.2                                                                            \
+	--name elasticsearch6_7_2                                                                            \
 	-d                                                                                                   \
 	-p 9200:9200                                                                                         \
 	-e http.port=9200                                                                                    \
