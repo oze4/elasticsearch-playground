@@ -5,8 +5,8 @@ og_elasticsearch_container:
 .PHONY: elasticsearch6_container
 elasticsearch6_container:
 	docker run                                                                                           \
-	--name elasticsearch6_7_2                                                                            \
 	-d                                                                                                   \
+	--name elasticsearch6_7_2                                                                            \
 	-p 9200:9200                                                                                         \
 	-e http.port=9200                                                                                    \
 	-e http.cors.enabled=true                                                                            \
