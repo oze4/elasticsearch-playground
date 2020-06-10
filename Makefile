@@ -48,4 +48,25 @@ elasticsearch_dejavu:
 .PHONY: list_targets
 list_targets:
 	./list_targets.sh
+
+.PHONY: bin_clean
+bin_clean:
+	rm -rf bin/
+
+DARWIN_OSX_OUTFILE := bin/main-darwin-osx-amd64
+
+.PHONY: clean_compile
+clean_compile: bin_clean compile
+
+.PHONY: execute_darwin_binary
+execute_darwin_binary:
+	./$(DARWIN_OSX_OUTFILE)
 	
+compile:
+	echo "Compiling for every OS and Platform"
+	GOOS=freebsd GOARCH=386 go build -o bin/main-freebsd-386 main.go
+	GOOS=linux GOARCH=386 go build -o bin/main-linux-386 main.go
+	GOOS=windows GOARCH=386 go build -o bin/main-windows-386 main.go
+	GOOS=darwin GOARCH=amd64 go build -o $(DARWIN_OSX_OUTFILE) main.go
+	echo "- have to "chmod" on osx"
+	chmod 755 $(DARWIN_OSX_OUTFILE)
